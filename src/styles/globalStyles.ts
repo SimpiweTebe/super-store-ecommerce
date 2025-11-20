@@ -19,6 +19,11 @@ const globalStyles = StyleSheet.create({
     fontSize: 20,
     color: colors.black
   },
+  Heading2: {
+    fontFamily: "Figtree-Bold",
+    fontSize: 16,
+    color: colors.black
+  },
   roundButton: {
     width: 45,
     height: 45,

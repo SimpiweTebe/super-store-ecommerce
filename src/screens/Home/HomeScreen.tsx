@@ -7,6 +7,7 @@ import Routes from '../../navigation/Routes'
 import styles from './styles'
 import globalStyles from '../../styles/globalStyles'
 import Button from '../../components/Button/Button'
+import CategoryList from '../../components/CategoryList/CategoryList'
 
 type Props = {
   id: number
@@ -36,9 +37,11 @@ const categories: Props[] = [
   },
 ]
 
+const productList = [1,2,3,4]
+
 export default function HomeScreen({ navigation }) {
   const [selectedCategory, setSelectedCategory] = useState('All')
-  console.log({ selectedCategory })
+  const onCategoryPress = ()=> {}
 
   return (
     <ScrollView style={globalStyles.defaultBackground}>
@@ -50,6 +53,7 @@ export default function HomeScreen({ navigation }) {
           source={{uri: 'https://images.pexels.com/photos/18247649/pexels-photo-18247649.jpeg'}} 
         />
       </View>
+
       <View>
         <FlatList 
           data={categories}
@@ -64,6 +68,10 @@ export default function HomeScreen({ navigation }) {
           keyExtractor={item => `${item.id}`}
           showsHorizontalScrollIndicator={false}
         /> 
+      </View>
+      
+      <View style={styles.section}>
+        <CategoryList productsList={productList} categoryAction={onCategoryPress} navigation={navigation}/>
       </View>
     </ScrollView>
   )

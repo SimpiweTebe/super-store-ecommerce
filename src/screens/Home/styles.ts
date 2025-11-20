@@ -12,6 +12,9 @@ const styles = StyleSheet.create({
   carouselImage: {
     height: '100%',
     width: '100%'
+  },
+  section: {
+    marginTop: 20
   }
 })
 
