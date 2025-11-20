@@ -14,12 +14,23 @@ const globalStyles = StyleSheet.create({
   flex: {
     flex: 1,
   },
+  Heading1: {
+    fontFamily: "Figtree-Bold",
+    fontSize: 20,
+    color: colors.black
+  },
   roundButton: {
-    width: 40,
-    height: 40,
+    width: 45,
+    height: 45,
     borderColor: colors.lightGrey,
     borderWidth: 1,
     borderRadius: 50,
+  },
+  defaultBackground: {
+    backgroundColor: 'white'
+  },
+  borderRadius: {
+    borderRadius: 10
   }
 })
 

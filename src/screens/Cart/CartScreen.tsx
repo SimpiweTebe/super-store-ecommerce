@@ -1,10 +1,17 @@
-import { View, Text } from 'react-native'
+import { View, Text, ScrollView } from 'react-native'
 import React from 'react'
+import { ShoppingBag } from 'lucide-react-native';
+import PageHeaderSection from '../../components/PageHeader/PageHeaderSection'
 
-export default function CartScreen() {
+export default function CartScreen({ navigation }) {
+
   return (
-    <View>
-      <Text>CartScreen</Text>
-    </View>
+    <ScrollView>
+      <PageHeaderSection
+        title='My Cart' 
+        navigation={navigation}
+        hasCartButton
+      />
+    </ScrollView>
   )
 }

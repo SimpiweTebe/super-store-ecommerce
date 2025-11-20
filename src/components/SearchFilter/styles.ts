@@ -6,7 +6,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     marginTop: 15,
-    gap: 10
+    gap: 10,
   },
   input: {
     flexDirection: 'row',
@@ -15,10 +15,9 @@ const styles = StyleSheet.create({
     borderColor: colors.lightGrey,
     borderWidth: 1,
     borderRadius: 50,
-    flex: 1
-  },
-  button: {
-    backgroundColor: colors.actionGreen,
+    flex: 1,
+    gap: 5,
+    height: 45
   }
 })
 

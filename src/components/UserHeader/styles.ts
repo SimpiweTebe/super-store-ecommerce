@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
   },
   cartActions: {
     backgroundColor: 'white',
-    padding: 6,
+    padding: 12,
     borderRadius: 80,
     borderColor: colors.lightGrey,
     borderWidth: 1,
