@@ -69,9 +69,22 @@ export default function HomeScreen({ navigation }) {
           showsHorizontalScrollIndicator={false}
         /> 
       </View>
-      
+
       <View style={styles.section}>
-        <CategoryList productsList={productList} categoryAction={onCategoryPress} navigation={navigation}/>
+        <CategoryList 
+          categoryTitle='Special For You'
+          productsList={productList} 
+          categoryAction={onCategoryPress} 
+          navigation={navigation}
+        />
+      </View>
+      <View style={styles.section}>
+        <CategoryList 
+          categoryTitle='Latest deals'
+          productsList={productList} 
+          categoryAction={onCategoryPress} 
+          navigation={navigation}
+        />
       </View>
     </ScrollView>
   )

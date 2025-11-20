@@ -5,16 +5,17 @@ import styles from './styles'
 import ProductCard from '../ProductCard/ProductCard'
 
 type CategoryListProps = {
+  categoryTitle: string
   categoryAction: ()=> void
   productsList: any[]
   navigation: any
 }
 
-export default function CategoryList({categoryAction, productsList, navigation}: CategoryListProps) {
+export default function CategoryList({categoryAction, productsList, categoryTitle, navigation}: CategoryListProps) {
   return (
     <View>
       <View style={styles.row}>
-        <Text style={globalStyles.Heading1}>Special For You</Text>
+        <Text style={globalStyles.Heading1}>{categoryTitle}</Text>
         <Pressable onPress={categoryAction}>
           <Text>See All</Text>
         </Pressable>
