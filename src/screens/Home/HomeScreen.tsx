@@ -1,4 +1,4 @@
-import { View, Text, Image, FlatList, Pressable } from 'react-native'
+import { View, Text, Image, FlatList } from 'react-native'
 import React, { useState } from 'react'
 import { ScrollView } from 'react-native-gesture-handler'
 import UserHeader from '../../components/UserHeader/UserHeader'
@@ -8,6 +8,8 @@ import styles from './styles'
 import globalStyles from '../../styles/globalStyles'
 import Button from '../../components/Button/Button'
 import CategoryList from '../../components/CategoryList/CategoryList'
+import BottomNavigation from '../../components/BottomNavigation/BottomNavigation'
+import { useNavigation } from '@react-navigation/native'
 
 type Props = {
   id: number
@@ -39,11 +41,13 @@ const categories: Props[] = [
 
 const productList = [1,2,3,4]
 
-export default function HomeScreen({ navigation }) {
+export default function HomeScreen() {
+  const navigation = useNavigation<any>()
   const [selectedCategory, setSelectedCategory] = useState('All')
   const onCategoryPress = ()=> {}
 
   return (
+    <>
     <ScrollView style={globalStyles.defaultBackground}>
       <UserHeader handleCheckOut={()=> navigation.navigate(Routes.Cart)} />
       <SearchFilter />
@@ -75,7 +79,6 @@ export default function HomeScreen({ navigation }) {
           categoryTitle='Special For You'
           productsList={productList} 
           categoryAction={onCategoryPress} 
-          navigation={navigation}
         />
       </View>
       <View style={styles.section}>
@@ -83,9 +86,11 @@ export default function HomeScreen({ navigation }) {
           categoryTitle='Latest deals'
           productsList={productList} 
           categoryAction={onCategoryPress} 
-          navigation={navigation}
+      
         />
       </View>
     </ScrollView>
+    <BottomNavigation />
+    </>
   )
 }

@@ -3,21 +3,21 @@ import { colors } from "../../constants/branding";
 
 const styles = StyleSheet.create({
   container: {
+    padding: 10,
+    backgroundColor: '#fff',
     flexDirection: 'row',
-    alignItems: 'center',
-    marginTop: 10,
-    gap: 10,
+    justifyContent: 'space-between'
   },
-  input: {
+  linkItem: {
+    backgroundColor: colors.lightGrey,
     flexDirection: 'row',
     alignItems: 'center',
-    paddingHorizontal: 15,
-    borderColor: colors.lightGrey,
-    borderWidth: 1,
-    borderRadius: 50,
-    flex: 1,
-    gap: 5,
-    height: 45
+    borderRadius: 20
+  },
+  linkText: {
+    paddingRight: 15,
+    paddingLeft: 10,
+    fontSize: 13
   }
 })
 

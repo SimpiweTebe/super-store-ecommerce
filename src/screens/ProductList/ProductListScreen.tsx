@@ -1,16 +1,15 @@
 import { View, Text, ScrollView } from 'react-native'
 import React from 'react'
+import globalStyles from '../../styles/globalStyles'
 import PageHeaderSection from '../../components/PageHeader/PageHeaderSection'
 
-export default function ProductDetailsScreen() {
-
+export default function ProductListScreen() {
   return (
     <ScrollView>
       <PageHeaderSection
-        title='Details' 
-        // hasSecondaryAction
+        title='Dynamic list page' 
+        hasSecondaryAction={false}
       />
-      <Text>My test</Text>
     </ScrollView>
   )
 }

@@ -8,10 +8,9 @@ type CategoryListProps = {
   categoryTitle: string
   categoryAction: ()=> void
   productsList: any[]
-  navigation: any
 }
 
-export default function CategoryList({categoryAction, productsList, categoryTitle, navigation}: CategoryListProps) {
+export default function CategoryList({categoryAction, productsList, categoryTitle }: CategoryListProps) {
   return (
     <View>
       <View style={styles.row}>
@@ -23,7 +22,7 @@ export default function CategoryList({categoryAction, productsList, categoryTitl
 
       <View style={styles.productGrid}>
         {
-          productsList?.map((product, indx) => <ProductCard productItem={product} navigation={navigation} key={indx}/>)
+          productsList?.map((product, indx) => <ProductCard productItem={product} key={indx}/>)
         }
       </View>
     </View>

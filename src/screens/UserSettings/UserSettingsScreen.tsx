@@ -1,16 +1,16 @@
 import { View, Text, ScrollView } from 'react-native'
 import React from 'react'
+import styles from './styles'
+import globalStyles from '../../styles/globalStyles'
 import PageHeaderSection from '../../components/PageHeader/PageHeaderSection'
 
-export default function ProductDetailsScreen() {
-
+export default function UserSettingsScreen() {
   return (
     <ScrollView>
       <PageHeaderSection
-        title='Details' 
-        // hasSecondaryAction
+        title='User Settings' 
+        hasSecondaryAction={false}
       />
-      <Text>My test</Text>
     </ScrollView>
   )
 }

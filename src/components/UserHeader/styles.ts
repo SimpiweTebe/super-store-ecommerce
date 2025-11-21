@@ -6,7 +6,10 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'space-between'
+    justifyContent: 'space-between',
+    backgroundColor: '#fff',
+    paddingBottom: 5
+
   },
   userActions: {
     backgroundColor: 'white',
