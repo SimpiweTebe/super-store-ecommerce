@@ -10,6 +10,7 @@ button: {
     borderWidth: 1,
     flexDirection: 'row',
     alignItems: 'center',
+    justifyContent: 'center'
   },
   buttonWide: {
     paddingHorizontal: 20,
@@ -26,6 +27,10 @@ button: {
   activeText: {
     color: '#fff'
   },
+  primary: {
+    backgroundColor: colors.actionGreen,
+    borderColor: colors.actionGreen,
+  }
 })
 
 export default styles

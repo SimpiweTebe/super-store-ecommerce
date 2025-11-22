@@ -1,9 +1,13 @@
 import { View, Text, ScrollView, Image, FlatList, Pressable } from 'react-native'
 import React, { useEffect, useState } from 'react'
+import { Share2 } from 'lucide-react-native';
+
 import PageHeaderSection from '../../components/PageHeader/PageHeaderSection'
 import styles from './styles'
 import Carousel, { SlideData } from '../../components/Carousel/Carousel'
 import globalStyles from '../../styles/globalStyles'
+import Button from '../../components/Button/Button'
+import RoundButtonIcon from '../../components/Button/RoundButtonIcon'
 
 const data: SlideData[] = [
   {
@@ -64,6 +68,7 @@ export default function ProductDetailsScreen() {
   }
 
   return (
+    <>
     <ScrollView style={styles.container}>
       <PageHeaderSection title='Details' />
       <Carousel data={data}/>
@@ -95,7 +100,19 @@ export default function ProductDetailsScreen() {
           />
       </View>
 
-     
+      <View style={styles.details}>
+        <Text style={styles.textGrey}>
+          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Temporibus deleniti soluta necessitatibus excepturi saepe ratione reiciendis unde nulla perferendis tempora? Neque velit modi saepe tempore culpa a maxime facere quaerat!
+        </Text>
+      </View>
     </ScrollView>
+
+    <View style={styles.pageActions}>
+      <RoundButtonIcon Icon={Share2} onPress={()=> {}}/>
+      <View style={styles.addToCart}>
+        <Button title='Add To Cart' isPrimary onPress={()=> {}}/>
+      </View>
+    </View>
+    </>
   )
 }

@@ -9,15 +9,16 @@ type ButtonProps = {
   title: string
   onPress: ()=> void
   isActive?: boolean
+  isPrimary?: boolean
 }
 
 export default function Button(props: ButtonProps) {
   return (
-    <Pressable onPress={props.onPress} style={[styles.button, styles.buttonWide, props.isActive && styles.activeButton]}>
+    <Pressable onPress={props.onPress} style={[styles.button, styles.buttonWide, props.isActive && styles.activeButton, props.isPrimary && styles.primary]}>
       {
         props.isActive && <Sparkles size={14} fill={colors.actionGreen} />
       }
-      <Text style={[styles.text, props.isActive && styles.activeText]}>{props.title}</Text>
+      <Text style={[styles.text, props.isActive && styles.activeText ]}>{props.title}</Text>
     </Pressable>
   )
 }

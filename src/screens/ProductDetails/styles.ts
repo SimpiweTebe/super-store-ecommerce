@@ -42,6 +42,18 @@ const styles = StyleSheet.create({
   },
   activeButtonText: {
     color: '#fff'
+  },
+  details: {
+    paddingBottom: 50
+  },
+  pageActions: {
+    flexDirection: 'row',
+    backgroundColor: '#fff',
+    gap: 10,
+    paddingVertical: 10
+  },
+  addToCart: {
+    flex: 1
   }
 })
 
