@@ -21,7 +21,7 @@ export default function Carousel({ data }: { data: SlideData[]}) {
       <Image source={{ uri: currentSlide.url }} style={styles.carouselImage}/>
       <View style={styles.slideIndexContainer}>
         {
-          data.map(item => <View style={[styles.slideIndex, item.id === currentSlide.id && styles.activeCarouselThumbail && styles.activeSlideIndex]}/>)
+          data.map(item => <View key={item.id} style={[styles.slideIndex, item.id === currentSlide.id && styles.activeCarouselThumbail && styles.activeSlideIndex]}/>)
         }
       </View>
     </View>

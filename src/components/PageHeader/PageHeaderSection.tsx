@@ -19,7 +19,7 @@ export default function PageHeaderSection({ title, isCartAction = false, hasSeco
   return (
     <View style={styles.container}>
       <RoundButtonIcon Icon={ArrowLeft} onPress={()=> navigation.goBack()}/>
-      <Text style={globalStyles.Heading1}>{title}</Text>
+      <Text style={globalStyles.HeadingOne}>{title}</Text>
       
       { hasSecondaryAction && (
           isCartAction ? <RoundButtonIcon Icon={ShoppingBag} onPress={()=> navigation.goBack()}/> 

@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react'
 import PageHeaderSection from '../../components/PageHeader/PageHeaderSection'
 import styles from './styles'
 import Carousel, { SlideData } from '../../components/Carousel/Carousel'
+import globalStyles from '../../styles/globalStyles'
 
 const data: SlideData[] = [
   {
@@ -27,21 +28,74 @@ const data: SlideData[] = [
   },
 ]
 
+const availableSizes = [
+  {
+    size: 'S',
+    id: 1
+  },
+  {
+    size: 'M',
+    id: 2
+  },
+  {
+    size: 'L',
+    id: 3
+  },
+  {
+    size: 'XL',
+    id: 4
+  },
+  {
+    size: 'XXL',
+    id: 5
+  },
+  {
+    size: 'XXXL',
+    id: 6
+  },
+]
+
 export default function ProductDetailsScreen() {
+  const [selectedSize, setSelectedSize] = useState(availableSizes[0].size)
+
+  const handleSizeSelect = (item) => {
+    console.log({ item})
+    setSelectedSize(item.size)
+  }
 
   return (
-    <ScrollView>
+    <ScrollView style={styles.container}>
       <PageHeaderSection title='Details' />
       <Carousel data={data}/>
-      <View>
+
+      <View style={styles.headerSection}>
         <View>
-          <Text>Casual Hoodie Black</Text>
-          <Text>Outwear Men</Text>
+          <Text style={globalStyles.HeadingOne}>Casual Hoodie Black</Text>
+          <Text style={styles.textGrey}>Outwear Men</Text>
         </View>
         <View>
-          <Text>$68.00</Text>
+          <Text style={globalStyles.HeadingOne}>$68.00</Text>
         </View>
       </View>
+
+      <View style={styles.sizeSelector}>
+        <View style={styles.sizeTitle}>
+          <Text style={globalStyles.HeadingTwo}>Select Size</Text>
+          <Text style={styles.textGrey}>Size Chart</Text>
+        </View>
+
+         <FlatList 
+            data={availableSizes}
+            horizontal
+            renderItem={({ item })=> (
+            <Pressable key={item.id} style={[styles.sizeButton, item.size === selectedSize && styles.activeSizeButton]} onPress={()=> handleSizeSelect(item)}>
+              <Text style={[styles.buttonText, item.size === selectedSize && styles.activeButtonText]}>{item.size}</Text>
+            </Pressable>
+            )}
+          />
+      </View>
+
+     
     </ScrollView>
   )
 }

@@ -14,7 +14,7 @@ export default function CategoryList({categoryAction, productsList, categoryTitl
   return (
     <View>
       <View style={styles.row}>
-        <Text style={globalStyles.Heading1}>{categoryTitle}</Text>
+        <Text style={globalStyles.HeadingOne}>{categoryTitle}</Text>
         <Pressable onPress={categoryAction}>
           <Text>See All</Text>
         </Pressable>

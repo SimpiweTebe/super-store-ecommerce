@@ -14,12 +14,12 @@ const globalStyles = StyleSheet.create({
   flex: {
     flex: 1,
   },
-  Heading1: {
+  HeadingOne: {
     fontFamily: "Figtree-Bold",
     fontSize: 20,
     color: colors.black
   },
-  Heading2: {
+  HeadingTwo: {
     fontFamily: "Figtree-Bold",
     fontSize: 16,
     color: colors.black

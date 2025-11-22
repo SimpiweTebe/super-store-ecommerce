@@ -1,52 +1,47 @@
-import { JustifyContent } from './../../../node_modules/csstype/index.d';
 import { StyleSheet } from "react-native";
 import { colors } from "../../constants/branding";
 
 const styles = StyleSheet.create({
-  carouselContainer: {
-    marginVertical: 20,
-    overflow: 'hidden',
-    position: 'relative'
+  container: {
+    backgroundColor: '#fff',
+    paddingBottom: 40
   },
-  carouselImage: {
-    width: '100%',
-    height: 250,
-    borderRadius: 20
-  },
-  carouselThumbail: {
-    marginRight: 20
-  },
-  carouselThumbailImage: {
-    borderWidth: 1.5,
-    borderColor: colors.lightGrey,
-    borderRadius: 50,
-    width: 60,
-    height: 60
-  },
-  activeCarouselThumbail: {
-    borderWidth: 2,
-    borderColor: colors.actionGreen,
-    borderRadius: 50,
-  },
-  slideIndexContainer: {
-    position: 'absolute',
-    bottom: 20,
+  headerSection: {
     flexDirection: 'row',
-    gap: 5,
+    justifyContent: 'space-between',
+    marginVertical: 20
+  },
+  sizeSelector: {
+    marginBottom: 20
+  },
+  sizeTitle: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginBottom: 15
+  },
+  textGrey: {
+    color: colors.grey
+  },
+  sizeButton: {
+    marginRight: 8,
+    backgroundColor: colors.lightGrey,
+    alignItems: 'center',
     justifyContent: 'center',
-    width: '100%'
+    borderRadius: 50,
+    width: 55,
+    height: 55
   },
-  slideIndex: {
-    width: 7,
-    height: 7,
-    borderWidth: 1.5,
-    borderColor: '#fff',
-    borderRadius: 50
-  },
-  activeSlideIndex: {
-    backgroundColor: colors.actionGreen,
+   activeSizeButton: {
+    backgroundColor: '#000',
     borderColor: colors.actionGreen,
-    width: 20
+    borderWidth: 2
+  },
+  buttonText: {
+    fontSize: 15,
+    fontFamily: "Figtree-Medium",
+  },
+  activeButtonText: {
+    color: '#fff'
   }
 })
 
