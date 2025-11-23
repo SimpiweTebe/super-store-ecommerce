@@ -22,7 +22,9 @@ button: {
     borderColor: colors.black,
   },
   text: {
-    color: colors.black
+    color: colors.black,
+    fontFamily: "Figtree-Medium",
+    fontSize: 15
   },
   activeText: {
     color: '#fff'

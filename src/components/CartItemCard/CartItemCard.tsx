@@ -9,6 +9,7 @@ type Props = {
 }
 
 export default function CartItemCard({ product }: Props) {
+  
   return (
     <View style={styles.container}>
       <Image source={{ uri: product.productThumbnail }} style={styles.thumbnail}/>
