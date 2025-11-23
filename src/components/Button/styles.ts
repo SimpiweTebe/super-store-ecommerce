@@ -10,6 +10,26 @@ button: {
     borderWidth: 1,
     flexDirection: 'row',
     alignItems: 'center',
+    justifyContent: 'center'
+  },
+  buttonWide: {
+    paddingHorizontal: 20,
+    marginRight: 10,
+    gap: 5
+  },
+  activeButton: {
+    backgroundColor: colors.black,
+    borderColor: colors.black,
+  },
+  text: {
+    color: colors.black
+  },
+  activeText: {
+    color: '#fff'
+  },
+  primary: {
+    backgroundColor: colors.actionGreen,
+    borderColor: colors.actionGreen,
   }
 })
 
