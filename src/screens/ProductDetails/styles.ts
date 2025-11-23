@@ -20,7 +20,8 @@ const styles = StyleSheet.create({
     marginBottom: 15
   },
   textGrey: {
-    color: colors.grey
+    color: colors.grey,
+    lineHeight: 19
   },
   sizeButton: {
     marginRight: 8,
