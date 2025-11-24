@@ -32,7 +32,6 @@ const styles = StyleSheet.create({
     color: colors.grey
   },
   cardPrice: {
-    fontSize: 14,
     color: colors.grey,
   }
 })

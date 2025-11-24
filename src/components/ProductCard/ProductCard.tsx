@@ -27,7 +27,7 @@ export default function ProductCard({productItem}: productItemTypes) {
       <View style={styles.cardDetails}>
         <Text style={styles.cardBrand}>T-Shirt man</Text>
         <Text style={globalStyles.HeadingTwo}>Black Shirt</Text>
-        <Text style={[globalStyles.HeadingTwo, styles.cardPrice]}>R799</Text>
+        <Text style={[globalStyles.HeadingOne, styles.cardPrice]}>R799</Text>
       </View>
     </View>
   )

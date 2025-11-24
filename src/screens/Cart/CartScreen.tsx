@@ -63,7 +63,7 @@ export default function CartScreen({ navigation }) {
           <Text style={styles.text}>Discount: </Text>
           <Text style={globalStyles.HeadingTwo}>$11.00</Text>
         </View>
-        <View style={styles.row}>
+        <View style={[styles.row, styles.total]}>
           <Text style={styles.text}>total: </Text>
           <Text style={globalStyles.HeadingTwo}>$212</Text>
         </View>
