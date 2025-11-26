@@ -25,14 +25,21 @@ const styles = StyleSheet.create({
     top: 8,
     zIndex: 10
   },
+  likedItem: {
+    borderColor: colors.actionGreen,
+    borderWidth: 3,
+    borderRadius: 30,
+  },
   cardDetails: {
     marginTop: 10
   },
   cardBrand: {
-    color: colors.grey
+    color: colors.grey,
+    fontSize: 13
   },
   cardPrice: {
     color: colors.grey,
+    fontSize: 17
   }
 })
 

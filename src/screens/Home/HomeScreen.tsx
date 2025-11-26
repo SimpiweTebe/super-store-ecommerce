@@ -1,4 +1,4 @@
-import { View, Text, Image, FlatList } from 'react-native'
+import { View, Image, FlatList } from 'react-native'
 import React, { useState } from 'react'
 import { ScrollView } from 'react-native-gesture-handler'
 import UserHeader from '../../components/UserHeader/UserHeader'
@@ -10,6 +10,8 @@ import Button from '../../components/Button/Button'
 import CategoryList from '../../components/CategoryList/CategoryList'
 import BottomNavigation from '../../components/BottomNavigation/BottomNavigation'
 import { useNavigation } from '@react-navigation/native'
+import { productData } from '../../productData'
+import { useAppSelector } from '../../redux/hooks'
 
 type Props = {
   id: number
@@ -39,11 +41,14 @@ const categories: Props[] = [
   },
 ]
 
-const productList = [1,2,3,4]
-
 export default function HomeScreen() {
   const navigation = useNavigation<any>()
   const [selectedCategory, setSelectedCategory] = useState('All')
+  const [products, setProducts] = useState([])
+  const [isLoading, setIsLoading] = useState(false)
+
+  const state = useAppSelector(state => state.products)
+
   const onCategoryPress = ()=> {}
 
   return (
@@ -77,14 +82,14 @@ export default function HomeScreen() {
       <View style={styles.section}>
         <CategoryList 
           categoryTitle='Special For You'
-          productsList={productList} 
+          productsList={productData} 
           categoryAction={onCategoryPress} 
         />
       </View>
       <View style={styles.section}>
         <CategoryList 
           categoryTitle='Latest deals'
-          productsList={productList} 
+          productsList={productData} 
           categoryAction={onCategoryPress} 
       
         />
