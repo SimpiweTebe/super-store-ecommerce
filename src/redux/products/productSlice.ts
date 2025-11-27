@@ -40,13 +40,28 @@ export const productSlice = createSlice({
       const existingItem = state.cartProducts.find(item => item.id === newItem.id);
       existingItem ? existingItem.QTY += 1 : state.cartProducts.push({ ...newItem, QTY: 1 })
     },
+    updateCart: (state, action: PayloadAction<IProductType>)=> {
+      const product = action.payload
+      const itemInCart = state.cartProducts.find(item => item.id === product.id);
+      let updatedCartList: IProductType[] = []
+
+      if (itemInCart) {
+        updatedCartList = state.cartProducts.map(item => item.id === itemInCart.id ? {...product, QTY: product.QTY - 1} : item);
+      }
+      
+      state.cartProducts = updatedCartList
+    },
+    removeFromCart: (state, action: PayloadAction<IProductType>)=> {
+      const newList = current(state).cartProducts.filter(item => item.id !== action.payload.id)
+      state.cartProducts = newList
+    },
     setCurrentProduct: (state, action: PayloadAction<IProductType>)=> {
       state.currentProduct = action.payload
     },
   },
 })
 
-export const { addToCart, addToLikes, setCurrentProduct, setProductList, removeFromLikes } = productSlice.actions
+export const { addToCart, updateCart, removeFromCart, addToLikes, removeFromLikes, setCurrentProduct, setProductList } = productSlice.actions
 
 // Other code such as selectors can use the imported `RootState` type
 export const selectedProductState = (state: RootState) => state.products
