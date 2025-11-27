@@ -8,7 +8,7 @@ interface productState {
   productList: IProductType[]
   likedProducts: IProductType[]
   cartProducts: IProductType[]
-  currentProduct: IProductType | {}
+  currentProduct: IProductType | null
 }
 
 // Define the initial state using that type
@@ -16,7 +16,7 @@ const initialState: productState = {
   productList: [],
   likedProducts: [],
   cartProducts: [],
-  currentProduct: {},
+  currentProduct: null,
 }
 
 export const productSlice = createSlice({
@@ -28,11 +28,11 @@ export const productSlice = createSlice({
     },
     addToLikes: (state, action: PayloadAction<IProductType>)=> {
       const newItem = action.payload;
+      console.log({ newItem})
       state.likedProducts.push(newItem)
     },
     removeFromLikes: (state, action: PayloadAction<IProductType>)=> {
       const newList = current(state).likedProducts.filter(item => item.id !== action.payload.id)
-      state.likedProducts = []
       state.likedProducts = newList
     },
     addToCart: (state, action: PayloadAction<IProductType>)=> {
@@ -41,7 +41,7 @@ export const productSlice = createSlice({
       existingItem ? existingItem.QTY += 1 : state.cartProducts.push({ ...newItem, QTY: 1 })
     },
     setCurrentProduct: (state, action: PayloadAction<IProductType>)=> {
-      state = {...state, currentProduct: action.payload}
+      state.currentProduct = action.payload
     },
   },
 })

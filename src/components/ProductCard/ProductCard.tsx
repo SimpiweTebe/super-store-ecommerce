@@ -9,7 +9,7 @@ import globalStyles from '../../styles/globalStyles';
 import Routes from '../../navigation/Routes';
 import { IProductType } from '../../productData';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
-import { addToLikes, removeFromLikes } from '../../redux/products/productSlice';
+import { addToLikes, removeFromLikes, setCurrentProduct } from '../../redux/products/productSlice';
 
 type productItemTypes = {
   productItem: IProductType
@@ -22,12 +22,17 @@ export default function ProductCard({ productItem }: productItemTypes) {
   const isLikedItem = likedProducts?.find(item => item.id === productItem.id)
  
   const handleLike = ()=> {
-    isLikedItem ?  dispatch(removeFromLikes(productItem)) : dispatch(addToLikes(productItem)) 
+    isLikedItem ?  dispatch(removeFromLikes(productItem)) : dispatch(addToLikes({...productItem, isLikedItem: true})) 
+  }
+
+  const handleNavigation = ()=> {
+    dispatch(setCurrentProduct(productItem))
+    navigation.navigate(Routes.ProductDetails)
   }
 
   return (
     <View style={styles.card}>
-      <Pressable style={styles.imageContainer} onPress={()=> navigation.navigate(Routes.ProductDetails)}>
+      <Pressable style={styles.imageContainer} onPress={handleNavigation}>
         <View style={[styles.likeButton, isLikedItem && styles.likedItem]}>
           <RoundButtonIcon Icon={Heart} onPress={handleLike}/>
         </View>

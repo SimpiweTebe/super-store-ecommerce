@@ -5,6 +5,7 @@ import CartItemCard from '../../components/CartItemCard/CartItemCard'
 import styles from './styles'
 import Button from '../../components/Button/Button'
 import globalStyles from '../../styles/globalStyles'
+import { useAppSelector } from '../../redux/hooks'
 
 export type ProductTtype = {
   id: number
@@ -40,13 +41,17 @@ const products: ProductTtype[] = [
 
 export default function CartScreen({ navigation }) {
 
+  const { cartProducts, likedProducts } = useAppSelector(state => state.products)
+
+  console.log({ cartProducts })
+
   return (
     <>
     <PageHeaderSection title='My Cart' />
     <ScrollView style={styles.container}>
       <View style={styles.cartList}>
         {
-          products.map(item => <CartItemCard product={item} key={item.id}/>)
+          cartProducts?.map(item => <CartItemCard product={item} key={item.id}/>)
         }
       </View>
 

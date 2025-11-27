@@ -47,7 +47,7 @@ export default function HomeScreen() {
   const [products, setProducts] = useState([])
   const [isLoading, setIsLoading] = useState(false)
 
-  const state = useAppSelector(state => state.products)
+  const { cartProducts, likedProducts } = useAppSelector(state => state.products)
 
   const onCategoryPress = ()=> {}
 

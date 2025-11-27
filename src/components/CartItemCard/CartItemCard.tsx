@@ -1,18 +1,18 @@
 import { View, Text, Image, Pressable } from 'react-native'
 import React from 'react'
 import styles from './styles'
-import { ProductTtype } from '../../screens/Cart/CartScreen'
 import globalStyles from '../../styles/globalStyles'
+import { IProductType } from '../../productData'
 
 type Props = {
-  product: ProductTtype
+  product: IProductType
 }
 
 export default function CartItemCard({ product }: Props) {
   
   return (
     <View style={styles.container}>
-      <Image source={{ uri: product.productThumbnail }} style={styles.thumbnail}/>
+      <Image source={{ uri: product.imageUrl }} style={styles.thumbnail}/>
       
       <View>
         <Text style={globalStyles.HeadingTwo}>{product.brand}</Text>

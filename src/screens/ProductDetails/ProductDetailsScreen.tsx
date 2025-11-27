@@ -10,23 +10,22 @@ import Button from '../../components/Button/Button'
 import RoundButtonIcon from '../../components/Button/RoundButtonIcon'
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import { addToCart } from '../../redux/products/productSlice';
-import { IProductType, productData } from '../../productData';
+import { IProductType } from '../../productData';
 
 export default function ProductDetailsScreen() {
   const dispatch = useAppDispatch()
-  const { likedProducts } = useAppSelector((state => state.products))
+  const { likedProducts, currentProduct: productDetails } = useAppSelector((state => state.products))
+  const isLikedProduct = !!likedProducts.find(item => item.id === productDetails?.id)
 
-  const [currentProduct, setCurrentProduct] = useState<IProductType>()
+  const [currentProduct, setCurrentProduct] = useState<IProductType | null>(null)
   const [selectedSize, setSelectedSize] = useState('')
-  const [isLikedItem, setIsLikedItem] = useState<boolean>(false)
 
   useEffect(()=> {
-    setCurrentProduct(productData[0])
+    setCurrentProduct(productDetails)
     currentProduct && setSelectedSize(currentProduct?.availableSize[0])
-    currentProduct && setIsLikedItem(!!likedProducts.find(item => item.id === currentProduct?.id))
-  }, [currentProduct, likedProducts])
+  }, [currentProduct, likedProducts, productDetails])
 
-  const handleSizeSelect = (item) => {
+  const handleSizeSelect = (item: string) => {
     setSelectedSize(item)
   }
 
@@ -57,12 +56,10 @@ export default function ProductDetailsScreen() {
 
   const handleAddToCart = ()=> dispatch(addToCart(currentProduct))
 
-  console.log({ isLikedItem })
-
   return (
     <>
     <ScrollView style={styles.container}>
-      <PageHeaderSection title='Details' isLikedItem={!!isLikedItem}/>
+      <PageHeaderSection title='Details' isLikedItem={isLikedProduct}/>
       <Carousel data={data}/>
 
       <View style={styles.headerSection}>
