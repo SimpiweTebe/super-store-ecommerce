@@ -54,7 +54,7 @@ export default function ProductDetailsScreen() {
   },
 ]
 
-  const handleAddToCart = ()=> dispatch(addToCart(currentProduct))
+  const handleAddToCart = ()=> dispatch(addToCart({...currentProduct, selectedSize }))
 
   return (
     <>

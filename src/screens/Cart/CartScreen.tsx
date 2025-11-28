@@ -7,19 +7,16 @@ import Button from '../../components/Button/Button'
 import globalStyles from '../../styles/globalStyles'
 import { useAppSelector } from '../../redux/hooks'
 import { IProductType } from '../../productData'
+import NoContent from '../../components/NoContent/NoContent'
 
 
 export default function CartScreen({ navigation }) {
 
   const { cartProducts } = useAppSelector(state => state.products)
+  const totalAmount = cartProducts.reduce((total, currentItem) => (total + currentItem.price * currentItem.QTY), 0)
+  const totalQTY = cartProducts.reduce((total, currentItem) => (total + currentItem.QTY), 0)
 
-  const calculateTotal = (cart: IProductType[])=> {
-    // The reduce method takes a function (accumulator, currentValue) and an initial value (0)
-    return cart.reduce((total, currentItem) => {
-      // For each item, add the product of price and quantity to the accumulator (total)
-      return total + currentItem.price * currentItem.QTY;
-    }, 0); // The '0' is the initial value of the accumulator
-  };
+  if (cartProducts.length === 0) return <NoContent title='Your cart is empty'/>
 
   return (
     <>
@@ -38,15 +35,15 @@ export default function CartScreen({ navigation }) {
         </View>
         <View style={styles.row}>
           <Text style={styles.text}>Sub total: </Text>
-          <Text style={globalStyles.HeadingTwo}>R{calculateTotal(cartProducts)}</Text>
+          <Text style={globalStyles.HeadingTwo}>R{totalAmount}</Text>
         </View>
         <View style={styles.row}>
           <Text style={styles.text}>Discount: </Text>
-          <Text style={globalStyles.HeadingTwo}>R0</Text>
+          <Text style={globalStyles.HeadingTwo}>R{totalQTY >= 5 ? 200 : 0}</Text>
         </View>
         <View style={[styles.row, styles.total]}>
           <Text style={styles.text}>total: </Text>
-          <Text style={globalStyles.HeadingTwo}>R{calculateTotal(cartProducts)}</Text>
+          <Text style={globalStyles.HeadingTwo}>R{totalAmount}</Text>
         </View>
       </View>
     </ScrollView>

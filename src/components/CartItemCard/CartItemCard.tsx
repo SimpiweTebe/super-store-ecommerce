@@ -5,6 +5,7 @@ import globalStyles from '../../styles/globalStyles'
 import { IProductType } from '../../productData'
 import { useAppDispatch } from '../../redux/hooks'
 import { addToCart, removeFromCart, updateCart } from '../../redux/products/productSlice'
+import CloseIcon from '../CloseIcon/CloseIcon'
 
 type Props = {
   product: IProductType
@@ -20,15 +21,19 @@ export default function CartItemCard({ product }: Props) {
   
   return (
     <View style={styles.container}>
+      <Pressable onPress={()=> dispatch(removeFromCart(product))} style={styles.closeBtn}>
+        <CloseIcon />
+      </Pressable>
       <Image source={{ uri: product.imageUrl }} style={styles.thumbnail}/>
       
       <View>
         <Text style={globalStyles.HeadingTwo}>{product.brand}</Text>
         <Text style={styles.productName}>{product.name}</Text>
+        <Text style={styles.productName}>Size: {product.selectedSize}</Text>
 
         <View style={styles.cartBottomRow}>
           <View style={styles.price}>
-            <Text style={globalStyles.HeadingOne}>${product.price * product.QTY}</Text>
+            <Text style={globalStyles.HeadingOne}>R{product.price * product.QTY}</Text>
           </View>
 
           <View style={styles.cartActions}>

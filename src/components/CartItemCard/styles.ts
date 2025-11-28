@@ -13,7 +13,7 @@ const styles = StyleSheet.create({
   },
   thumbnail: {
     width: 130,
-    height: 90,
+    height: 100,
     borderRadius: 15
   },
   productName: {
@@ -21,7 +21,7 @@ const styles = StyleSheet.create({
     fontSize: 13
   },
   cartBottomRow: {
-    marginTop: 20,
+    marginTop: 15,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
@@ -57,6 +57,12 @@ const styles = StyleSheet.create({
   removeBtn: {
     backgroundColor: '#fff'
   },
+  closeBtn: {
+    position: 'absolute',
+    top: -15,
+    right: 0,
+    zIndex: 1
+  }
 })
 
 export default styles

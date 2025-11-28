@@ -8,7 +8,7 @@ const styles = StyleSheet.create({
     flex: 1
   },
   cartList: {
-    gap: 15
+    gap: 20
   },
   cartActions: {
     backgroundColor: '#fff'

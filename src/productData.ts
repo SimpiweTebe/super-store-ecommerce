@@ -16,6 +16,7 @@ export interface IProductType {
   description: string
   QTY: number
   isLikedItem?: boolean
+  selectedSize?: string
 }
 
 export const productData: IProductType[] = [
