@@ -15,4 +15,4 @@ For more details about this setup visit: [React Native CLI Docs](https://reactna
 
 <image src="./screenshots/home.png" width="300" height="auto"/>
 <image src="./screenshots/details.png" width="300" height="auto"/>
-<image src="./screenshots/details.png" width="300" height="auto"/>
+<image src="./screenshots/cart.png" width="300" height="auto"/>
