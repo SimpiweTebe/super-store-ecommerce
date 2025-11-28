@@ -5,15 +5,19 @@ import {
 } from 'react-native-safe-area-context';
 import MainNavigation from './src/navigation/MainNavigation';
 import globalStyles from './src/styles/globalStyles';
+import { Provider } from 'react-redux';
+import { store } from './src/redux/store';
 
 function App() {
   
   return (
-    <SafeAreaProvider>
+    <Provider store={store}>
+      <SafeAreaProvider>
       <SafeAreaView style={[globalStyles.flex, styles.container]}>
         <MainNavigation />
       </SafeAreaView>
     </SafeAreaProvider>
+    </Provider>
   );
 }
 

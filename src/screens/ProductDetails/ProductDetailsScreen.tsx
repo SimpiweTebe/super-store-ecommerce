@@ -1,4 +1,4 @@
-import { View, Text, ScrollView, Image, FlatList, Pressable } from 'react-native'
+import { View, Text, ScrollView, FlatList, Pressable } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import { Share2 } from 'lucide-react-native';
 
@@ -8,11 +8,33 @@ import Carousel, { SlideData } from '../../components/Carousel/Carousel'
 import globalStyles from '../../styles/globalStyles'
 import Button from '../../components/Button/Button'
 import RoundButtonIcon from '../../components/Button/RoundButtonIcon'
+import { useAppDispatch, useAppSelector } from '../../redux/hooks';
+import { addToCart } from '../../redux/products/productSlice';
+import { IProductType } from '../../productData';
 
-const data: SlideData[] = [
+export default function ProductDetailsScreen() {
+  const dispatch = useAppDispatch()
+  const { likedProducts, currentProduct: productDetails } = useAppSelector((state => state.products))
+  const isLikedProduct = !!likedProducts.find(item => item.id === productDetails?.id)
+
+  const [currentProduct, setCurrentProduct] = useState<IProductType | null>(null)
+  const [selectedSize, setSelectedSize] = useState('')
+
+  useEffect(()=> {
+    setCurrentProduct(productDetails)
+    currentProduct && setSelectedSize(currentProduct?.availableSize[0])
+  }, [currentProduct, likedProducts, productDetails])
+
+  const handleSizeSelect = (item: string) => {
+    setSelectedSize(item)
+  }
+
+  if (!currentProduct) return <View><Text>Loading...</Text></View>
+
+  const data: SlideData[] = [
   {
     id: 1,
-    url: 'https://images.pexels.com/photos/886285/pexels-photo-886285.jpeg'
+    url: currentProduct.imageUrl
   },
   {
     id: 2,
@@ -32,54 +54,21 @@ const data: SlideData[] = [
   },
 ]
 
-const availableSizes = [
-  {
-    size: 'S',
-    id: 1
-  },
-  {
-    size: 'M',
-    id: 2
-  },
-  {
-    size: 'L',
-    id: 3
-  },
-  {
-    size: 'XL',
-    id: 4
-  },
-  {
-    size: 'XXL',
-    id: 5
-  },
-  {
-    size: 'XXXL',
-    id: 6
-  },
-]
-
-export default function ProductDetailsScreen() {
-  const [selectedSize, setSelectedSize] = useState(availableSizes[0].size)
-
-  const handleSizeSelect = (item) => {
-    console.log({ item})
-    setSelectedSize(item.size)
-  }
+  const handleAddToCart = ()=> dispatch(addToCart({...currentProduct, selectedSize }))
 
   return (
     <>
     <ScrollView style={styles.container}>
-      <PageHeaderSection title='Details' />
+      <PageHeaderSection title='Details' isLikedItem={isLikedProduct}/>
       <Carousel data={data}/>
 
       <View style={styles.headerSection}>
         <View>
-          <Text style={globalStyles.HeadingOne}>Casual Hoodie Black</Text>
-          <Text style={styles.textGrey}>Outwear Men</Text>
+          <Text style={globalStyles.HeadingOne}>{currentProduct.brand}</Text>
+          <Text style={styles.textGrey}>{currentProduct.name}</Text>
         </View>
         <View>
-          <Text style={globalStyles.HeadingOne}>$68.00</Text>
+          <Text style={globalStyles.HeadingOne}>R{currentProduct.price}</Text>
         </View>
       </View>
 
@@ -90,11 +79,11 @@ export default function ProductDetailsScreen() {
         </View>
 
          <FlatList 
-            data={availableSizes}
+            data={currentProduct.availableSize}
             horizontal
             renderItem={({ item })=> (
-            <Pressable key={item.id} style={[styles.sizeButton, item.size === selectedSize && styles.activeSizeButton]} onPress={()=> handleSizeSelect(item)}>
-              <Text style={[styles.buttonText, item.size === selectedSize && styles.activeButtonText]}>{item.size}</Text>
+            <Pressable key={item} style={[styles.sizeButton, item === selectedSize && styles.activeSizeButton]} onPress={()=> handleSizeSelect(item)}>
+              <Text style={[styles.buttonText, item === selectedSize && styles.activeButtonText]}>{item}</Text>
             </Pressable>
             )}
           />
@@ -102,7 +91,7 @@ export default function ProductDetailsScreen() {
 
       <View style={styles.details}>
         <Text style={styles.textGrey}>
-          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Temporibus deleniti soluta necessitatibus excepturi saepe ratione reiciendis unde nulla perferendis tempora? Neque velit modi saepe tempore culpa a maxime facere quaerat!
+          {currentProduct.description}
         </Text>
       </View>
     </ScrollView>
@@ -110,7 +99,7 @@ export default function ProductDetailsScreen() {
     <View style={styles.pageActions}>
       <RoundButtonIcon Icon={Share2} onPress={()=> {}}/>
       <View style={styles.addToCart}>
-        <Button title='Add To Cart' isPrimary onPress={()=> {}}/>
+        <Button title='Add To Cart' isPrimary onPress={handleAddToCart}/>
       </View>
     </View>
     </>

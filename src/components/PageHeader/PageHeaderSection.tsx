@@ -6,15 +6,19 @@ import { ShoppingBag, Heart } from 'lucide-react-native';
 import styles from './styles'
 import globalStyles from '../../styles/globalStyles';
 import { useNavigation } from '@react-navigation/native';
+import { colors } from '../../constants/branding';
 
 type Props = {
   title: string
   isCartAction?: boolean
   hasSecondaryAction?: boolean
+  cartItems?: boolean
+  isLikedItem?: boolean
 }
 
-export default function PageHeaderSection({ title, isCartAction = false, hasSecondaryAction = true }: Props) {
+export default function PageHeaderSection({ title, isCartAction = false, hasSecondaryAction = true, cartItems, isLikedItem }: Props) {
   const navigation = useNavigation<any>()
+  const isCurrentLikedItem = !isCartAction && isLikedItem ? colors.actionGreen : ''
     
   return (
     <View style={styles.container}>
@@ -23,7 +27,7 @@ export default function PageHeaderSection({ title, isCartAction = false, hasSeco
       
       { hasSecondaryAction && (
           isCartAction ? <RoundButtonIcon Icon={ShoppingBag} onPress={()=> navigation.goBack()}/> 
-          : <RoundButtonIcon Icon={Heart} onPress={()=> navigation.goBack()}/> 
+          : <RoundButtonIcon Icon={Heart} onPress={()=> navigation.goBack()} backgroundColor={isCurrentLikedItem}/> 
         )
       }
       {/* To preserve layout consistency and spacing we add this component but hide from UI */}

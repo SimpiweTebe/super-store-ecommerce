@@ -7,27 +7,41 @@ import RoundButtonIcon from '../Button/RoundButtonIcon'
 import styles from './styles'
 import globalStyles from '../../styles/globalStyles';
 import Routes from '../../navigation/Routes';
+import { IProductType } from '../../productData';
+import { useAppDispatch, useAppSelector } from '../../redux/hooks';
+import { addToLikes, removeFromLikes, setCurrentProduct } from '../../redux/products/productSlice';
 
 type productItemTypes = {
-  productItem: any
+  productItem: IProductType
 }
 
-
-export default function ProductCard({productItem}: productItemTypes) {
+export default function ProductCard({ productItem }: productItemTypes) {
   const navigation = useNavigation<any>()
+  const dispatch = useAppDispatch()
+  const { likedProducts } = useAppSelector((state)=> state.products)
+  const isLikedItem = likedProducts?.find(item => item.id === productItem.id)
+ 
+  const handleLike = ()=> {
+    isLikedItem ?  dispatch(removeFromLikes(productItem)) : dispatch(addToLikes({...productItem, isLikedItem: true})) 
+  }
+
+  const handleNavigation = ()=> {
+    dispatch(setCurrentProduct(productItem))
+    navigation.navigate(Routes.ProductDetails)
+  }
 
   return (
     <View style={styles.card}>
-      <Pressable style={styles.imageContainer} onPress={()=> navigation.navigate(Routes.ProductDetails)}>
-        <View style={styles.likeButton}>
-          <RoundButtonIcon Icon={Heart} onPress={()=> {}}/>
+      <Pressable style={styles.imageContainer} onPress={handleNavigation}>
+        <View style={[styles.likeButton, isLikedItem && styles.likedItem]}>
+          <RoundButtonIcon Icon={Heart} onPress={handleLike}/>
         </View>
-        <Image source={{uri: 'https://images.pexels.com/photos/18247649/pexels-photo-18247649.jpeg'}}  style={styles.image}/>
+        <Image source={{uri: productItem.imageUrl}}  style={styles.image}/>
       </Pressable>
       <View style={styles.cardDetails}>
-        <Text style={styles.cardBrand}>T-Shirt man</Text>
-        <Text style={globalStyles.HeadingTwo}>Black Shirt</Text>
-        <Text style={[globalStyles.HeadingOne, styles.cardPrice]}>R799</Text>
+        <Text style={styles.cardBrand}>{productItem.brand}</Text>
+        <Text style={globalStyles.HeadingTwo}>{productItem.name}</Text>
+        <Text style={[globalStyles.HeadingOne, styles.cardPrice]}>R{productItem.price}</Text>
       </View>
     </View>
   )
